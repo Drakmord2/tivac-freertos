@@ -53,7 +53,7 @@ static void TemperatureTask(void* pvParameters){
     while(1)
     {
         xSemaphoreTake(g_pUARTSemaphore, MAX_TICKS);
-        UARTprintf("Task Temperatura acordou! \n");
+        UARTprintf("Task TEMPERATURA acordou!\n");
         xSemaphoreGive(g_pUARTSemaphore);
 
         GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x2);

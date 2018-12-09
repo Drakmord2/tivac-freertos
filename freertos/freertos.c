@@ -14,10 +14,9 @@
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
-#include "grava_task.h"
-#include "temperature_task.h"
-#include "serial_task.h"
-#include "priorities.h"
+#include "tasks/grava_task.h"
+#include "tasks/temperature_task.h"
+#include "tasks/serial_task.h"
 
 xSemaphoreHandle g_pUARTSemaphore;
 xSemaphoreHandle g_MasterSemaphore;
@@ -37,9 +36,7 @@ __error__(char *pcFilename, uint32_t ui32Line)
 void
 vApplicationStackOverflowHook(xTaskHandle *pxTask, char *pcTaskName)
 {
-    while(1)
-    {
-    }
+    while(1){}
 }
 
 void
@@ -99,6 +96,7 @@ main(void)
         while(1){};
     }
 
+    UARTprintf("\n-- Projeto de Sistemas Operacionais --\n\n");
     vTaskStartScheduler();
 
     while(1){}

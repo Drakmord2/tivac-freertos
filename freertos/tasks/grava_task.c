@@ -35,8 +35,9 @@ GravaTask(void* pvParameters){
 
     uint32_t tmp;
     uint32_t buffer[10];
-    int i = 0;
+    uint32_t epromm[10];
     uint32_t wakeup = xTaskGetTickCount();
+    int i = 0;
 
     while(1) {
         if (xQueueReceive(grava_Queue, &tmp, MAX_TICKS) == pdPASS){
@@ -46,17 +47,15 @@ GravaTask(void* pvParameters){
         }
 
         if (i == 10){
-            GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x8);
-            SysCtlDelay(20000000);
-
             i = 0;
-            EEPROMProgram(buffer, 0x0, sizeof(buffer));
+            GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x8);
+            SysCtlDelay(15000000);
 
-            uint32_t epromm[10];
+            EEPROMProgram(buffer, 0x0, sizeof(buffer));
             EEPROMRead(epromm, 0x0, sizeof(epromm));
 
             xSemaphoreTake(g_pUARTSemaphore, MAX_TICKS);
-            UARTprintf("Task Grava gravou o dado! \n");
+            UARTprintf("\nTask GRAVA gravou o dado! \n\n");
             xSemaphoreGive(g_pUARTSemaphore);
         }
 

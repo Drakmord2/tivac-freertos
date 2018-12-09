@@ -36,6 +36,7 @@ SerialTask(void * pvParameters){
         uint32_t buffer[10];
         uint32_t wakeup = xTaskGetTickCount();
         int i = 0;
+        int j = 0;
 
         while(1) {
             if (xQueueReceive(serial_Queue, &tmp, MAX_TICKS) == pdPASS){
@@ -47,13 +48,14 @@ SerialTask(void * pvParameters){
             if (i == 10){
                 i = 0;
                 GPIOPinWrite(GPIO_PORTF_BASE,GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3, 0x4);
-                SysCtlDelay(20000000);
+                SysCtlDelay(15000000);
 
                 xSemaphoreTake(g_pUARTSemaphore, MAX_TICKS);
-                UARTprintf("Task Serial enviou: ");
-                int j = 0;
-                for(j = 0; j < 10; j++, UARTprintf("%d ", buffer[j]));
-                UARTprintf("\n");
+                UARTprintf("Task SERIAL enviou: [ ");
+                for(j = 0; j < 10; j++) {
+                    UARTprintf("%d ", buffer[j]);
+                }
+                UARTprintf("]\n\n");
                 xSemaphoreGive(g_pUARTSemaphore);
             }
 
