@@ -36,7 +36,6 @@ extern QueueHandle_t serial_Queue;
 
 static void TemperatureTask(void* pvParameters){
     // Declare local variables
-    uint32_t i = 0;                     // Counter variable
     uint32_t ui32ADC0Value[4];          // ADC12 read array
     volatile uint32_t ui32TempAvg;      // Temp Average
     volatile uint32_t ui32TempValueC;   // Temp in Celsius scale
