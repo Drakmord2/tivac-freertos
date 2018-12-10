@@ -26,7 +26,6 @@
 #define MAX_TICKS 5
 
 extern xSemaphoreHandle g_pUARTSemaphore;
-extern xSemaphoreHandle g_MasterSemaphore;
 
 extern QueueHandle_t grava_Queue;
 
@@ -58,8 +57,6 @@ GravaTask(void* pvParameters){
             UARTprintf("\nTask GRAVA gravou o dado! \n\n");
             xSemaphoreGive(g_pUARTSemaphore);
         }
-
-        vTaskDelayUntil(&wakeup, 1000 / portTICK_RATE_MS);
     }
 }
 

@@ -19,7 +19,6 @@
 #include "tasks/serial_task.h"
 
 xSemaphoreHandle g_pUARTSemaphore;
-xSemaphoreHandle g_MasterSemaphore;
 QueueHandle_t grava_Queue;
 QueueHandle_t serial_Queue;
 

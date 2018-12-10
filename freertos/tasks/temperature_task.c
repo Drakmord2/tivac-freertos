@@ -30,7 +30,6 @@
 #define BUFFER_SIZE 10
 
 extern xSemaphoreHandle g_pUARTSemaphore;
-extern xSemaphoreHandle g_MasterSemaphore;
 extern QueueHandle_t grava_Queue;
 extern QueueHandle_t serial_Queue;
 

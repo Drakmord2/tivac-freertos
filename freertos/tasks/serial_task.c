@@ -25,7 +25,6 @@
 #define MAX_TICKS 5
 
 extern xSemaphoreHandle g_pUARTSemaphore;
-extern xSemaphoreHandle g_MasterSemaphore;
 
 extern QueueHandle_t serial_Queue;
 
@@ -58,8 +57,6 @@ SerialTask(void * pvParameters){
                 UARTprintf("]\n\n");
                 xSemaphoreGive(g_pUARTSemaphore);
             }
-
-            vTaskDelayUntil(&wakeup, 1000 / portTICK_RATE_MS);
         }
     }
 }
